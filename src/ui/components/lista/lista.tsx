@@ -11,7 +11,8 @@ import {
 import { Pet } from "../../../data/@types/Pet"
 
 interface ListProps {
-    pets: Pet[]
+    pets: Pet[];
+    onSelect: (pet: Pet) => void;
 }
 export default function List(props: ListProps){
     const tamanhoMaximo = 200;
@@ -27,7 +28,12 @@ export default function List(props: ListProps){
                     <DescriptionStyled>
                        {TextService.limitarTexto(pet.history, tamanhoMaximo)};
                     </DescriptionStyled>
-                    <Button variant={"contained"} fullWidth>adotar {pet.name}</Button>
+                    <Button 
+                        variant={"contained"} 
+                        fullWidth 
+                        onClick={() => props.onSelect(pet)}
+                    >adotar {pet.name} 
+                    </Button>
                 </InformationStyled>
                 </ListItemStyled>
             ))}
